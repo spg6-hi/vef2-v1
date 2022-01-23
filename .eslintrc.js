@@ -11,6 +11,7 @@ module.exports = {
   rules: {
     'no-restricted-syntax': 0,
     'import/prefer-default-export': 0,
+    'import/no-extraneous-dependencies': 0,
     quotes: ['error', 'single'],
     'no-console': [
       'warn',

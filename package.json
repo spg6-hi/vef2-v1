@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "node ./src/build.js && cpy public dist",
-    "test": "NODE_OPTIONS='--experimental-vm-modules' jest ./test/*.js",
-    "dev": "browser-sync start --server --files ./dist/styles.css ./dist/index.html",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest ./*.test.js",
+    "coverage": "NODE_OPTIONS='--experimental-vm-modules' jest --coverage --collectCoverageFrom=\"./src/**/*.js\"",
+    "dev": "browser-sync start --serveStatic ./dist --server --files ./public/styles.css ./dist/*.html",
     "prettier": "prettier --write .",
     "lint": "concurrently npm:lint:*",
     "lint:eslint": "eslint ./src/**/*.js",
@@ -24,7 +25,9 @@
   },
   "homepage": "https://github.com/vefforritun/vef2-2022-v1-synilausn#readme",
   "devDependencies": {
+    "@jest/globals": "^27.4.6",
     "browser-sync": "^2.27.7",
+    "cpy-cli": "^3.1.1",
     "eslint": "^8.7.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
