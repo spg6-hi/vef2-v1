@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from 'fs/promises';
 import path, { join } from 'path';
-import { direxists, readFile, readFilesFromDir } from './lib/file.js';
+import { direxists, readFile } from './lib/file.js';
 import { indexTemplate, statsTemplate } from './lib/html.js';
 import { parse } from './lib/parser.js';
 
@@ -13,10 +13,13 @@ async function main() {
     await mkdir(OUTPUT_DIR);
   }
 
-  const dataFiles = await readFilesFromDir(DATA_DIR);
+  // const dataFiles = await readFilesFromDir(DATA_DIR);
   const results = [];
 
-  for (const file of dataFiles) {
+  const indexData = await readFile(`${DATA_DIR}/index.json`, {encoding: 'utf8'});
+  const parsedData =  JSON.parse(indexData);
+
+  for (const file of parsedData) {
     // eslint-disable-next-line no-await-in-loop
     const content = await readFile(file);
 

@@ -8,7 +8,7 @@ export function parse(input) {
     return [];
   }
 
-  const split = input.split('\n');
+  const split = input.split(';');
 
   const mapped = split
     .map((i) => {
