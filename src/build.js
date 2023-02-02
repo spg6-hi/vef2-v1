@@ -1,6 +1,5 @@
 import { mkdir, writeFile } from 'fs/promises';
 import path, { join } from 'path';
-import { calculate } from './lib/calculator.js';
 import { direxists, readFile, readFilesFromDir } from './lib/file.js';
 import { indexTemplate, statsTemplate } from './lib/html.js';
 import { parse } from './lib/parser.js';
@@ -24,14 +23,12 @@ async function main() {
     if (content) {
       const title = path.basename(file);
       const numbers = parse(content);
-      const stats = calculate(numbers);
       const filename = `${title}.html`;
 
       const result = {
         title,
         filename,
         numbers,
-        stats,
       };
       results.push(result);
 
